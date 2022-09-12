@@ -1,13 +1,49 @@
 import 'package:flutter/material.dart';
 
+import '../Models/meal.dart';
+
 class MealsItem extends StatelessWidget {
   //const MealsItem({ Key? key }) : super(key: key);
+
+  Meal meal;
+  MealsItem(this.meal);
+
+  String getComplexity(Meal meal) {
+    switch (meal.complexity) {
+      case Complexity.Simple:
+        return 'Simple';
+        break;
+
+      case Complexity.Challenging:
+        return 'Challenging';
+        break;
+
+      case Complexity.Hard:
+        return 'Hard';
+        break;
+    }
+  }
+
+  String getAffordability(Meal meal) {
+    switch (meal.affordability) {
+      case Affordability.Affordable:
+        return 'Cheap';
+        break;
+
+      case Affordability.Luxurious:
+        return 'Luxurious';
+        break;
+
+      case Affordability.Pricey:
+        return 'Pricey';
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(8),
-      height: 320,
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
@@ -21,39 +57,49 @@ class MealsItem extends StatelessWidget {
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10)),
                 child: Image.network(
-                  'https://cdn.pixabay.com/photo/2018/07/11/21/51/toast-3532016_1280.jpg',
+                  meal.imageUrl,
+                  height: 240,
+                  width: double.infinity,
                   fit: BoxFit.cover,
                 ),
               ),
               Positioned(
-                bottom: 15,
-                right: 10,
+                  bottom: 15,
+                  right: 10,
                   child: Container(
-                    padding: EdgeInsets.all(8),
+                    padding: EdgeInsets.fromLTRB(13, 5, 10, 5),
                     width: 300,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    
-                    color: Color.fromARGB(255, 132, 130, 130)),
-                child: const Text(
-                  'Wiener Schnitzel',
-                  overflow: TextOverflow.fade,
-                  style: TextStyle(color: Colors.white,fontSize: 20),
-                ),
-              )),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.black.withOpacity(0.4)),
+                    child: Text(
+                      meal.title,
+                      overflow: TextOverflow.fade,
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                  )),
             ]),
             Container(
-              height: 50,
+              height: 60,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.money),
+                      Icon(Icons.history),
                       SizedBox(
                         width: 7,
                       ),
-                      Text('Cheap')
+                      Text('${meal.duration} mins')
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.work),
+                      SizedBox(
+                        width: 7,
+                      ),
+                      Text(getComplexity(meal))
                     ],
                   ),
                   Row(
@@ -62,16 +108,7 @@ class MealsItem extends StatelessWidget {
                       SizedBox(
                         width: 7,
                       ),
-                      Text('Cheap')
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.money),
-                      SizedBox(
-                        width: 7,
-                      ),
-                      Text('Cheap')
+                      Text(getAffordability(meal))
                     ],
                   ),
                 ],

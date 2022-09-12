@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:task_two/Screens/category_detail_screen.dart';
+import 'package:task_two/Screens/favorites.dart';
 import 'package:task_two/Screens/homescreen.dart';
+import 'package:task_two/Screens/meal_detail.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,15 +17,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.brown,
-        canvasColor: Color.fromARGB(255, 234, 214, 155)
-      ),
+          primarySwatch: Colors.brown,
+          canvasColor: Color.fromARGB(255, 234, 214, 155)),
       //home: HomeScreen(),
       routes: {
-        '/':(ctx)=> HomeScreen(),
-        CategoryDetails.routeName:(ctx)=> CategoryDetails(),
+        '/': (ctx) => HomeScreen(),
+        CategoryDetails.routeName: (ctx) => CategoryDetails(),
+        Favorites.routeName: (ctx) => Favorites(),
+        MealDetailScreen.routeName:(ctx)=>MealDetailScreen()
+
       },
     );
   }
 }
-
