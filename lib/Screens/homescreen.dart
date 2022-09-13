@@ -7,16 +7,20 @@ import 'categories.dart';
 class HomeScreen extends StatefulWidget {
   //const HomeScreen({Key? key}) : super(key: key);
 
-  List<Map<String, Object>> screens = [
-    {
-      'page': Categories(), 'title': 'Categories'
-      //, Favorites()
-    },
-    {
-      'page': Favorites(), 'title': 'Favorites'
-      //, Favorites()
-    }
-  ];
+  // List<Map<String, Object>> screens = [
+  //   {
+  //     'page': Categories(), 'title': 'Categories'
+  //     //, Favorites()
+  //   },
+  //   {
+  //     'page': Favorites(), 'title': 'Favorites'
+  //     //, Favorites()
+  //   }
+  // ];
+
+  List<Map<String, Object>> screens;
+  HomeScreen(this.screens);
+
   int initialIndex = 0;
 
   @override

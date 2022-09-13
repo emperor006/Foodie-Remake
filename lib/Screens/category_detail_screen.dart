@@ -5,12 +5,19 @@ import 'package:task_two/Widget/meals_item.dart';
 
 import '../Models/meal.dart';
 
-class CategoryDetails extends StatelessWidget {
+class CategoryDetails extends StatefulWidget {
   // const CategoryDetails({ Key? key }) : super(key: key);
 
   static const routeName = '/categoryDetail';
-
   CategoryDetails();
+
+  @override
+  State<CategoryDetails> createState() => _CategoryDetailsState();
+}
+
+class _CategoryDetailsState extends State<CategoryDetails> {
+  
+
   @override
   Widget build(BuildContext context) {
     //has name of category and id of category
@@ -30,7 +37,7 @@ class CategoryDetails extends StatelessWidget {
           return InkWell(
               onTap: () {
                 Navigator.of(context).pushNamed(MealDetailScreen.routeName,
-                arguments:available[index]);
+                    arguments: available[index]);
               },
               child: MealsItem(available[index]));
         },

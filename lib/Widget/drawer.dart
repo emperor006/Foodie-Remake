@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_two/Screens/filterscreen.dart';
 
 class DrawerWidget extends StatelessWidget {
   TextStyle style = const TextStyle(fontWeight: FontWeight.bold, fontSize: 24);
@@ -16,22 +17,35 @@ class DrawerWidget extends StatelessWidget {
             child: const Center(
               child: Text(
                 'Cooking up!',
-                style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 24),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24),
               ),
             ),
           ),
-          ListTile(
-            leading: Icon(Icons.restaurant),
-            title: Text(
-              'Meals',
-              style: style,
+          InkWell(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: ListTile(
+              leading: Icon(Icons.restaurant),
+              title: Text(
+                'Meals',
+                style: style,
+              ),
             ),
           ),
-          ListTile(
-            leading: Icon(Icons.settings),
-            title: Text(
-              'Settings',
-              style: style,
+          InkWell(
+            onTap: (() {
+              Navigator.of(context).pushNamed(Filter.routeName);
+            }),
+            child: ListTile(
+              leading: Icon(Icons.settings),
+              title: Text(
+                'Settings',
+                style: style,
+              ),
             ),
           ),
         ],

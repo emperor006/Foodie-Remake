@@ -4,7 +4,10 @@ import 'package:task_two/Screens/category_detail_screen.dart';
 import 'package:task_two/Widget/categories_item.dart';
 
 class Categories extends StatelessWidget {
-  const Categories({Key? key}) : super(key: key);
+  //const Categories({Key? key}) : super(key: key);
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +23,10 @@ class Categories extends StatelessWidget {
         itemBuilder: (ctx, index) {
           return GestureDetector(
               onTap: (() {
-                Navigator.of(context)
-                    .pushNamed(CategoryDetails.routeName, arguments: {
-                      'id':DUMMY_CATEGORIES[index].id,
-                      'title':DUMMY_CATEGORIES[index].title
+                Navigator.of(context).pushNamed(CategoryDetails.routeName,
+                    arguments: {
+                      'id': DUMMY_CATEGORIES[index].id,
+                      'title': DUMMY_CATEGORIES[index].title
                     });
               }),
               child: CategoriesItem(DUMMY_CATEGORIES[index].color,
