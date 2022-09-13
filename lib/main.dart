@@ -12,6 +12,13 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
+  Map<String, bool> map = {};
+
+  bool isLactoseFree = true;
+  bool isVegan = false;
+  bool isVegetarian = false;
+  bool isGlutenFree = false;
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -19,21 +26,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   //const MyApp({Key? key}) : super(key: key);
   List<String> favoriteMeals = [];
-
-  List<Map<String, Object>> screens = [
-    // {
-    //   'page': Categories(), 'title': 'Categories'
-    //   //, Favorites()
-    // },
-    // {
-    //   'page': Favorites(favoriteMeals), 'title': 'Favorites'
-    //   //, Favorites()
-    // }
-  ];
+  List<Map<String, Object>> screens = [];
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
     screens = [
       {
         'page': Categories(), 'title': 'Categories'
@@ -45,7 +41,20 @@ class _MyAppState extends State<MyApp> {
       }
     ];
 
+    widget.map = {
+      'isVegan': widget.isVegan,
+      'isLactoseFree': widget.isLactoseFree,
+      'isVegetarianFree': widget.isVegetarian,
+      'isGlutenFree': widget.isGlutenFree,
+    };
+
     super.didChangeDependencies();
+  }
+
+  void updateSelection(Map<String, bool> map) {
+    setState(() {
+      widget.map = map;
+    });
   }
 
   void toggleFavorites(String id) {
@@ -78,8 +87,7 @@ class _MyAppState extends State<MyApp> {
         '/': (ctx) => HomeScreen(screens),
         CategoryDetails.routeName: (ctx) => CategoryDetails(),
         Favorites.routeName: (ctx) => Favorites(favoriteMeals),
-      Filter.routeName:(ctx)=>Filter(),
-
+        Filter.routeName: (ctx) => Filter(widget.map,updateSelection),
         MealDetailScreen.routeName: (ctx) =>
             MealDetailScreen(toggleFavorites, switchFavoriteIcon),
       },

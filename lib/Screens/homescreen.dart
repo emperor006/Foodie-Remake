@@ -18,6 +18,11 @@ class HomeScreen extends StatefulWidget {
   //   }
   // ];
 
+  bool isLactoseFree = false;
+  bool isVegan = false;
+  bool isVegetarian = false;
+  bool isGlutenFree = false;
+
   List<Map<String, Object>> screens;
   HomeScreen(this.screens);
 

@@ -6,8 +6,7 @@ import 'package:task_two/Widget/categories_item.dart';
 class Categories extends StatelessWidget {
   //const Categories({Key? key}) : super(key: key);
 
-
-
+  static const routeName = '';
 
   @override
   Widget build(BuildContext context) {
